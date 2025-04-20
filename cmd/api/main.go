@@ -7,6 +7,7 @@ import (
 
 	"payment-system/internal/common/db"
 	"payment-system/internal/user"
+	"payment-system/internal/middleware"
 
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
@@ -21,6 +22,10 @@ func main() {
 	handler := user.NewHandler(service)
 
 	r := mux.NewRouter()
+
+	// Apply rate limiting middleware globally
+	r.Use(middleware.RateLimitMiddleware)
+
 	r.HandleFunc("/register", handler.Register).Methods("POST")
 	r.HandleFunc("/login", handler.Login).Methods("POST")
 	r.HandleFunc("/users", handler.GetAll).Methods("GET")
