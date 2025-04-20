@@ -1,0 +1,50 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Dependency directories (go mod handles this)
+vendor/
+
+# Go build cache
+*.log
+*.tmp
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Env files (security)
+.env
+.env.*
+
+# Database dumps or credentials
+*.sql
+*.db
+*.pem
+
+# Application-specific
+/payment-system
+
+# Module files cache (if you're using tools that write locally)
+go.sum
+
+# Log files
+logs/
+*.log
+
+# Git files
+.git/
