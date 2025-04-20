@@ -1,12 +1,13 @@
 package auth
 
 import (
+	"os"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
 )
 
-var jwtKey = []byte("your_super_secret_key")
+var jwtKey = []byte(os.Getenv("your_super_secret_key"))
 
 func GenerateJWT(username string) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{

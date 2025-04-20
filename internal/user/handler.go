@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 	"strings"
+
+	httphelper "payment-system/internal/common/http"
 )
 
 type Handler struct {
@@ -60,6 +62,7 @@ func (h *Handler) Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(map[string]string{"token": token})
+
 }
 
 func (h *Handler) GetAll(w http.ResponseWriter, r *http.Request) {
@@ -68,5 +71,6 @@ func (h *Handler) GetAll(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Failed to get users", http.StatusInternalServerError)
 		return
 	}
-	json.NewEncoder(w).Encode(users)
+	//json.NewEncoder(w).Encode(users)
+	httphelper.WriteEncryptedJSON(w, users)
 }
