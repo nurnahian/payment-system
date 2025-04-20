@@ -139,13 +139,14 @@ vendor/
 
 ## 📌 TODO (next steps)
 
--
-
+- Payment System
+- Send Money
+- User Transection
 ---
 
 ## 🧑‍💼 Author
 
-Built with ❤️ by [Your Name]
+Nur Nahian
 
 ---
 
