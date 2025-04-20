@@ -6,8 +6,8 @@ import (
 	"os"
 
 	"payment-system/internal/common/db"
-	"payment-system/internal/user"
 	"payment-system/internal/middleware"
+	"payment-system/internal/user"
 
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
@@ -26,8 +26,14 @@ func main() {
 	// Apply rate limiting middleware globally
 	r.Use(middleware.RateLimitMiddleware)
 
-	r.HandleFunc("/register", handler.Register).Methods("POST")
+	// Apply JWT middleware
+	r.Use(middleware.JWTMiddleware)
+
+	// Public routes
 	r.HandleFunc("/login", handler.Login).Methods("POST")
+	r.HandleFunc("/register", handler.Register).Methods("POST")
+
+	// Protected routes
 	r.HandleFunc("/users", handler.GetAll).Methods("GET")
 
 	port := os.Getenv("PORT")
